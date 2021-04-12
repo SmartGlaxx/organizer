@@ -1,5 +1,6 @@
 import React from 'react';
 import reducer from './reducer';
+import { v4 as uuidv1 } from 'uuid';
 
 const AppContext = React.createContext();
 
@@ -48,7 +49,7 @@ const AppProvider = ({children})=>{
 		{
 			if(categ.name == state.displayedForm){                
 				const catr = state.itemName
-				const newlist = categ.list.push(catr)
+				const newlist = categ.list.push({id: uuidv1(), name:catr})
 			
 			} })
 		
@@ -73,19 +74,18 @@ const AppProvider = ({children})=>{
     const closeList = ()=>{
         dispatch({type: 'CLOSE_LIST'})
     }
-    const deleteItem =(category, item)=>{
-        dispatch({type: 'DELETE_ITEM', payload: {category, item}})
+    const deleteItem =(category, itemID)=>{
+        dispatch({type: 'DELETE_ITEM', payload: {category, itemID}})
     }
     const setCategory =(categoryName)=>{
         dispatch({type: 'SET_CATEGORY', payload: categoryName})
     }
 
-   
+   console.log(uuidv1())
 
     return <AppContext.Provider value={{
         ...state, setAddNewItem, closeForm, showList, closeList,
-        deleteItem, setCategory, addCategory, addToCategory, 
-        addToCategory, setItemName, 
+        deleteItem, setCategory, addCategory, addToCategory, setItemName, 
     }}>
         {children}
     </AppContext.Provider>

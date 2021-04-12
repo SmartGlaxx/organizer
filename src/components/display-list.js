@@ -33,11 +33,11 @@ const DisplayList =({eachCategory})=>{
 		<h3>{listName}</h3>
 		<button onClick={closeList} className='closeBtn'><FaWindowClose /></button>
 		<ul className='listContainer'>
-		{namer.map(item =>{
+		{namer.map((item , index)=>{
 			return <>
 			<li className='listItems'>
-			{item}
-			<button onClick={()=>{deleteItem(selectedCategory, item)}} className='deleteBtn'><FaRegTrashAlt /></button>
+			{item.name}
+			<button onClick={()=>{deleteItem(listName, item.id)}} className='deleteBtn'><FaRegTrashAlt /></button>
 			</li>
 			</>
 			})}
