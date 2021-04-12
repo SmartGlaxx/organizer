@@ -1,8 +1,9 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import styled from 'styled-components';
 import './App.css';
 import Categories from './components/category'
 import {ContextUser} from './context'
+import Form from './components/category-form'
 import {FaWindowClose, FaRegTrashAlt} from 'react-icons/fa'
 
 const Container = styled.div` 
@@ -93,7 +94,7 @@ function App() {
 	// const [categories, setCategories] = useState([])
 	
 
-	const colorRef = useRef()
+	// const colorRef = useRef()
 
 	// const addCategory = (e)=>{
 	// 	e.preventDefault()
@@ -123,23 +124,24 @@ function App() {
 	// 	setItemName('')
 		
 	// }
-	let namer = [];
-		displayList && <div>
-		{categories.filter(item =>{
-			if(item.name === selectedCategory){
-				 namer.push(...item.list)
-			}
-		})}</div>
-// console.log(color)	
- console.log(displayList)
+	// let namer = [];
+	// 	displayList && <div>
+	// 	{categories.filter(item =>{
+	// 		if(item.name === selectedCategory){
+	// 			 namer.push(...item.list)
+	// 		}
+	// 	})}</div>
+
+ 
  
 
   return (
-    <Container style={{background: color}}>
+    <Container >
 	{addNewItemm && <div className='overlay'><h1>OVEWRLAY</h1></div>}
 	<div className = 'category-maker'>
 	Create Category
- 		<form onSubmit={addCategory}>
+	<Form />
+ 		{/* <form onSubmit={addCategory}>
 		 <label htmlFor='category'>Title</label>
  			<input type='text' value={category} name='category'
  		onChange = {(e)=>{setCategory(e.target.value)}}
@@ -169,7 +171,7 @@ function App() {
 			<div style={{background: '#4a69bd'}} className='colorBox'></div><label htmlFor='#4a69bd'>Azraq Blue</label>
 			<input type='radio' name='color' value='#4a69bd' className='color' /><br/>
  			 <button type='submit'>Add</button>
- 		</form>
+ 		</form> */}
 		</div>
  		<div className='categoryList'>
 		 {categories.map((eachCategory, i) =>{
@@ -178,7 +180,7 @@ function App() {
 		 })}
 	</div>
 
-	{addNewItemm && 
+	{/* {addNewItemm && 
 	<div className='addToCategory'>
 	<form onSubmit={addToCategory}>
 	<button onClick={closeForm}><FaWindowClose /></button>
@@ -189,9 +191,9 @@ function App() {
 		<button>Add item</button>
 	</form>
 	</div>
-	}
+	} */}
 
-	{displayList && <div className='displayList'>
+	{/* {displayList && <div className='displayList'>
 	<button onClick={closeList} className='closeBtn'><FaWindowClose /></button>
 	<ul className='listContainer'>
 	{namer.map(item =>{
@@ -203,7 +205,7 @@ function App() {
 		</>
 	})}
 	</ul>
-	</div>}
+	</div>} */}
     </Container>
   );
 }

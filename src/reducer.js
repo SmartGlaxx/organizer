@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 const reducer = (state, action)=>{
     switch(action.type){
         
@@ -6,7 +8,7 @@ const reducer = (state, action)=>{
         break;
 
         case 'SET_CATEGORIES':
-        return {...state, categories: [...state.categories, {name: state.category, list: []} ] }
+        return {...state, categories: [...state.categories, {id:uuidv4(), name: state.category, categoryColor: action.payload, list: []} ] }
         break;
         case 'EMPTY_CATEGORY':
         return {...state, category: '' }

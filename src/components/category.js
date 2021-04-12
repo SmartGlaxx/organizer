@@ -1,6 +1,9 @@
 import React, {useState} from 'react'
 import {ContextUser} from '../context'
 import styled from 'styled-components'
+import {FaWindowClose, FaRegTrashAlt} from 'react-icons/fa'
+import DisplayList from './display-list'
+import ItemForm from './item-form'
 
 const Container = styled.div`
 	${'' /* width: 4rem;
@@ -23,11 +26,18 @@ const Container = styled.div`
 	}
 ` 
 
-const Category = ({eachCategory})=>{
-const [name, setName] = useState('')
-// const [addNewItem, setAddNewItem] = useState(false);
-const {setAddNewItem, setModalOpen, showList} = ContextUser();
+	const Category = ({eachCategory})=>{
+	const [name, setName] = useState('')
+	// const [addNewItem, setAddNewItem] = useState(false);
+	const {categories, selectedCategory, deleteItem, setAddNewItem, setModalOpen, showList, displayList, closeList} = ContextUser();
 
+	// let namer = [];
+	// 	displayList && <div>
+	// 	{categories.filter(item =>{
+	// 		if(item.name === selectedCategory){
+	// 				namer.push(...item.list)
+	// 		}
+	// 	})}</div>
 
 	
 
@@ -36,13 +46,18 @@ const {setAddNewItem, setModalOpen, showList} = ContextUser();
 		
 	}
 
-	return <Container >
+	return <Container style={{background: eachCategory.categoryColor}}>
 		<div >
 		<h2>{eachCategory.name}</h2>
-		<button onClick={()=>{showList(eachCategory.name)}}>View items on list</button><br/>
+		<button onClick={()=>{showList(eachCategory.id)}}>View items on list</button><br/>
 		<button onClick={()=>{addItem(eachCategory.name)} }
 		>Add Item</button>
 		</div>
+
+		<ItemForm />
+		<DisplayList eachCategory ={eachCategory}/>
+		
+
 		</Container>
 }
 

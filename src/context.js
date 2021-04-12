@@ -21,12 +21,11 @@ const AppProvider = ({children})=>{
     const addCategory = (e)=>{
 		e.preventDefault()
 		const formValue= document.forms[0]
-        // console.log(formValue)
 		for(let i=0; i<formValue.length; i++){
 			if(formValue[i].checked){
 				// setColor(formValue[i].value)
-                //console.log(formValue[i].value)
                 dispatch({type: 'SET_COLOR', payload: formValue[i].value})
+                dispatch({type: 'SET_CATEGORIES', payload: formValue[i].value})
 			}
 		}
 		
@@ -34,7 +33,7 @@ const AppProvider = ({children})=>{
 		// 	return [...prev,  {name: category, list: []}]
 		// })
         
-         dispatch({type: 'SET_CATEGORIES', })
+        //  dispatch({type: 'SET_CATEGORIES'})
          dispatch({type: 'EMPTY_CATEGORY', })
 		// setCategory('')
 	}
@@ -42,13 +41,12 @@ const AppProvider = ({children})=>{
     const setItemName =(name)=>{
        dispatch({type: 'SET_ITEM_NAME', payload: name})
     }
-console.log(state.itemName, 'wow')
+
     const addToCategory = (e)=>{
 		e.preventDefault()
 		const categName = state.categories.map(categ =>
 		{
-			if(categ.name == state.displayedForm){
-                console.log(state.itemName)
+			if(categ.name == state.displayedForm){                
 				const catr = state.itemName
 				const newlist = categ.list.push(catr)
 			
@@ -68,15 +66,14 @@ console.log(state.itemName, 'wow')
         dispatch({type: 'CLOSE_FORM', payload: false})
     }
 
-    const showList = (categoryName)=>{
-        dispatch({type: 'SELECTED_CATEGORY', payload: categoryName})
+    const showList = (categoryID)=>{
+        dispatch({type: 'SELECTED_CATEGORY', payload: categoryID})
     }
 
     const closeList = ()=>{
         dispatch({type: 'CLOSE_LIST'})
     }
     const deleteItem =(category, item)=>{
-        // console.log(category, item)
         dispatch({type: 'DELETE_ITEM', payload: {category, item}})
     }
     const setCategory =(categoryName)=>{
