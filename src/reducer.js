@@ -25,7 +25,7 @@ const reducer = (state, action)=>{
         return {...state, category: action.payload}
         break;
         case 'DISPLAY_ITEM_FORM':
-        return {...state, addNewItemm: action.payload.show, displayedForm: action.payload.itemName}
+        return {...state, addNewItemm: action.payload.show, displayedForm: action.payload.itemName, selectedCategory: action.payload.idCategory}
         break;
         case 'CLOSE_FORM':
         return {...state, addNewItemm: action.payload}
@@ -37,30 +37,7 @@ const reducer = (state, action)=>{
         return {...state, displayList: false}
         break;
         case 'DELETE_ITEM':
-        const category = action.payload.category;
-        const itemID = action.payload.itemID
-        
-        const newList = state.categories.filter(item => item.id !== itemID)
-       // console.log(newList)
-        const newCategories = state.categories
-         //let newCategory = {}
-         let newCategory = newCategories.filter(categor => categor.name == category)
-         const newColor = newCategory[0].categoryColor
-         const newId = newCategory[0].id
-         const newName = newCategory[0].name
-
-         let otherCategory = newCategories.filter(categor => categor.name != category)
-        //const rt = newCategory.list.filter(item => item.id == itemID)      
-        let remainingItem = newCategory[0].list.filter(item => {
-            return item.id !== itemID
-        })
-        console.log(remainingItem)
-        const wrdCateg = {list:remainingItem, name: newName , id: newId ,categoryColor: newColor}
-        const fCategories = [...otherCategory, wrdCateg]
-       
-        //const filtered = newCategory.list.filter(item => item.id !== itemID)
-
-         return {...state, categories:  fCategories }
+         return {...state, categories:  action.payload }
         break;
 
         default:

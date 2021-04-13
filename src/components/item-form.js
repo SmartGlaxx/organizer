@@ -19,7 +19,7 @@ const ItemForm = ()=>{
 	let listName= '';
 	categories.map(item => {
 		if(item.id == selectedCategory){
-			// return listName = item.name
+			 return listName = item.name
             
 		}
 		return listName

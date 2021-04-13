@@ -59,8 +59,8 @@ const AppProvider = ({children})=>{
 	}
 
 
-    const setAddNewItem =({show, itemName})=>{
-      dispatch({type: 'DISPLAY_ITEM_FORM', payload: {show,itemName}})
+    const setAddNewItem =({show, itemName, idCategory})=>{
+      dispatch({type: 'DISPLAY_ITEM_FORM', payload: {show,itemName,idCategory}})
    
     }
     const closeForm = ()=>{
@@ -75,13 +75,31 @@ const AppProvider = ({children})=>{
         dispatch({type: 'CLOSE_LIST'})
     }
     const deleteItem =(category, itemID)=>{
-        dispatch({type: 'DELETE_ITEM', payload: {category, itemID}})
+         // get all categories in state
+         const newCategories = state.categories
+         // get the exact category selected
+         let newCategory = newCategories.filter(categor => categor.name == category)
+         // get that category's other properties
+         const newColor = newCategory[0].categoryColor
+         const newId = newCategory[0].id
+         const newName = newCategory[0].name
+        //get aother categories not selected
+         let otherCategory = newCategories.filter(categor => categor.name != category)
+        // get the selected category's list items and remove clicked item
+        let remainingItem = newCategory[0].list.filter(item => {
+            return item.id !== itemID
+        })
+        // create a new category using the items not deleted inside the category
+        const wrdCateg = {list:remainingItem, name: newName , id: newId ,categoryColor: newColor}
+        // pass back this new ocategory as the new category into the categories array
+        const fCategories = [wrdCateg, ...otherCategory]
+
+        dispatch({type: 'DELETE_ITEM', payload: fCategories})
     }
     const setCategory =(categoryName)=>{
         dispatch({type: 'SET_CATEGORY', payload: categoryName})
     }
 
-   console.log(uuidv1())
 
     return <AppContext.Provider value={{
         ...state, setAddNewItem, closeForm, showList, closeList,

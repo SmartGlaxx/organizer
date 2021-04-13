@@ -41,8 +41,9 @@ const Container = styled.div`
 
 	
 
-	const addItem = (categoryName)=>{
-		setAddNewItem({show: true, itemName: categoryName})
+	const addItem = (categoryName, categoryId)=>{
+		//console.log(categoryId)
+		setAddNewItem({show: true, itemName: categoryName, idCategory: categoryId })
 		
 	}
 
@@ -50,7 +51,7 @@ const Container = styled.div`
 		<div >
 		<h2>{eachCategory.name}</h2>
 		<button onClick={()=>{showList(eachCategory.id)}}>View items on list</button><br/>
-		<button onClick={()=>{addItem(eachCategory.name)} }
+		<button onClick={()=>{addItem(eachCategory.name, eachCategory.id)} }
 		>Add Item</button>
 		</div>
 
