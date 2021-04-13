@@ -1,9 +1,9 @@
 import React from 'react'
 import {ContextUser} from '../context'
-import {FaWindowClose, FaRegTrashAlt} from 'react-icons/fa'
+import {FaWindowClose, FaRegTrashAlt, FaEdit} from 'react-icons/fa'
 
 const DisplayList =({eachCategory})=>{
-	const { displayList, deleteItem, closeList, categories, selectedCategory} = ContextUser();
+	const { displayList, deleteItem, editItem, closeList, categories, selectedCategory} = ContextUser();
 	let namer = [];
 	displayList && <div>
 	{categories.filter(item =>{
@@ -28,6 +28,7 @@ const DisplayList =({eachCategory})=>{
 		}
 		return listName
 	})
+	
 		return (
         displayList && <div className='displayList' style={{background: eachColor}}>
 		<h3>{listName}</h3>
@@ -38,6 +39,7 @@ const DisplayList =({eachCategory})=>{
 			<li className='listItems'>
 			{item.name}
 			<button onClick={()=>{deleteItem(listName, item.id)}} className='deleteBtn'><FaRegTrashAlt /></button>
+			<button onClick={()=>{editItem(listName, item.name, item.id)}} className='editBtn'><FaEdit/></button>
 			</li>
 			</>
 			})}

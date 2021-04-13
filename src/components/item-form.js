@@ -30,7 +30,7 @@ const ItemForm = ()=>{
     addNewItemm && 
         <div className='addToCategory' style={{display: 'flex',
 	justifyContent: 'center', background: eachColor2}}>
-        <form onSubmit={addToCategory}>
+        <form onSubmit={(e)=>addToCategory(e, listName)}>
         <h3>{listName}</h3>
         <button onClick={closeForm}><FaWindowClose /></button>
             <h1>Add item to {displayedForm}</h1>

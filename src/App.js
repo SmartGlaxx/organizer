@@ -38,6 +38,7 @@ justify-content: space-between;
 	top: 2rem;
 	left: 25%;
 	background: #ddd;
+	padding: 1rem;
 	${'' /* display: flex; */}
 	justify-content: center;
 }
@@ -65,18 +66,35 @@ justify-content: space-between;
 .closeBtn{
 	position:absolute;
 	right: 1rem;
-	top: 1rem
+	top: 1rem;
+	background: red;
+	font-size:1.3rem;
+	padding: 0.3rem;
+	display: flex;
+	aligh-items: center;
+	justify-content: center;
+	border-radius: 3px;
 	
 }
 .listContainer {
 	padding: 2rem 1rem
 }
 .listItems{
-	margin: 0.5rem;
-	list-style-type: none
+	margin: 0.8rem;
+	list-style-type: none;
+	width: 100%
 }
 .deleteBtn{
-	float:right
+	float:right;
+	background: red;
+	padding: 0.2rem;
+	margin: 0 1px
+}
+.editBtn{
+	float: right;
+	background: green;
+	padding: 0.2rem;
+	margin: 0 1px
 }
 ` 
 
@@ -84,7 +102,7 @@ function App() {
 	const {addNewItemm, displayedForm, closeForm, selectedCategory,
 	displayList, closeList, deleteItem, addCategory, setCategory,
 	 categories, category, color, addToCategory, setItemName, 
-	 itemName,
+	 itemName, overlay
 	} = ContextUser()
 	// const [itemName, setItemName] = useState('')
 	// const [color, setColor] = useState('#eee')
@@ -137,7 +155,7 @@ function App() {
 
   return (
     <Container >
-	{addNewItemm && <div className='overlay'><h1>OVEWRLAY</h1></div>}
+	{overlay && <div className='overlay'><h1>OVEWRLAY</h1></div>}
 	<div className = 'category-maker'>
 	Create Category
 	<Form />

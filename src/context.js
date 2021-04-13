@@ -12,7 +12,10 @@ const initialState ={
     color: '#eee',
     category: '',
     categories: [],
-    itemName: ''
+    itemName: '',
+    isEditing: false,
+    overlay: false,
+    editItemId: 0,
 
 }
 const AppProvider = ({children})=>{
@@ -43,15 +46,55 @@ const AppProvider = ({children})=>{
        dispatch({type: 'SET_ITEM_NAME', payload: name})
     }
 
-    const addToCategory = (e)=>{
-		e.preventDefault()
-		const categName = state.categories.map(categ =>
+    const addToCategory = (e, listName)=>{
+		 e.preventDefault()
+
+		if(state.isEditing){
+           
+            //all categorie
+             const newCategories = state.categories
+             // category of item to edit
+            let newCategory = newCategories.filter(categor => categor.name == listName)
+            // other categories in the state.categories array
+             let otherCategory = newCategories.filter(categor => categor.name != listName)
+
+            // get that category's other properties
+            const newColor = newCategory[0].categoryColor
+            const newId = newCategory[0].id
+            const newName = newCategory[0].name
+
+
+            const categName = state.categories.map(categ =>
+            { 
+                //comfirm name on displayed form
+            	if(categ.name == state.displayedForm){                
+            		const editedName = state.itemName
+                    //get other items in the list
+                    const otherItems = categ.list.filter(item => item.id !== state.editItemId)
+                    //create new list with remaining items in list not being edited
+                    const listWithoutEditItem = {list:otherItems, name: newName , id: newId ,categoryColor: newColor}
+                    //create a new list with the other items and the edited item
+                    listWithoutEditItem.list = [{id: state.editItemId, name:editedName}, ...listWithoutEditItem.list]
+                    
+                    const editedList = listWithoutEditItem;
+                    //combine new list with other categories
+                    const finalCategories = [editedList, ...otherCategory]
+                    dispatch({type: 'SET_EDITED_ITEM', payload: finalCategories})
+            // 		//const newlist = categ.list.push({id: state.editItemId, name:editedName})
+                
+			   } 
+            })
+        }
+        else{
+            const categName = state.categories.map(categ =>
 		{
 			if(categ.name == state.displayedForm){                
 				const catr = state.itemName
 				const newlist = categ.list.push({id: uuidv1(), name:catr})
 			
-			} })
+			} 
+        })
+        }
 		
 		// setItemName('')
          dispatch({type: 'EMPTY_ITEM_NAME'})
@@ -83,7 +126,7 @@ const AppProvider = ({children})=>{
          const newColor = newCategory[0].categoryColor
          const newId = newCategory[0].id
          const newName = newCategory[0].name
-        //get aother categories not selected
+        //get other categories not selected
          let otherCategory = newCategories.filter(categor => categor.name != category)
         // get the selected category's list items and remove clicked item
         let remainingItem = newCategory[0].list.filter(item => {
@@ -100,10 +143,24 @@ const AppProvider = ({children})=>{
         dispatch({type: 'SET_CATEGORY', payload: categoryName})
     }
 
+    const editItem = (cateName, itemName, id)=>{
+        //console.log(cateName, itemName, id)
+        state.categories.map(aCategory => {
+            if(aCategory.name == cateName){
+               const itemToEdit = aCategory.list.find(item => item.name == itemName)
+               const itemEdit = itemToEdit.name
+               dispatch({type: 'SET_EDIT_VALUE', payload: {cateName,itemEdit, id}})
+            //    dispatch({type: 'SET_IS_EDITING'})
+            //    dispatch({type: 'SET_EDIT_ID'})
+            }
+        })
+    }
+
 
     return <AppContext.Provider value={{
         ...state, setAddNewItem, closeForm, showList, closeList,
         deleteItem, setCategory, addCategory, addToCategory, setItemName, 
+        editItem, 
     }}>
         {children}
     </AppContext.Provider>

@@ -21,7 +21,7 @@ const Form = ()=>{
 			<input type='radio' name='color' value='#D980FA' className='color' /><br/>
 			<div style={{background: '#dfe4ea'}} className='colorBox'></div><label htmlFor='#dfe4ea'>City Lights</label>
 			<input type='radio' name='color' value='#dfe4ea' className='color' /><br/>
-
+{/* 
 			<div style={{background: '#eccc68'}} className='colorBox'></div><label htmlFor='#eccc68'>Golden Sand</label>
 			<input type='radio' name='color' value='#eccc68' className='color' /><br/>
 			<div style={{background: '#a4b0be'}} className='colorBox'></div><label htmlFor='#a4b0be'>Peace</label>
@@ -33,7 +33,7 @@ const Form = ()=>{
 			<div style={{background: '#ffa502'}} className='colorBox'></div><label htmlFor='#ffa502'>Orange</label>
 			<input type='radio' name='color' value='#ffa502' className='color' /><br/>
 			<div style={{background: '#4a69bd'}} className='colorBox'></div><label htmlFor='#4a69bd'>Azraq Blue</label>
-			<input type='radio' name='color' value='#4a69bd' className='color' /><br/>
+			<input type='radio' name='color' value='#4a69bd' className='color' /><br/> */}
  			 <button type='submit'>Add</button>
  		</form>
     )

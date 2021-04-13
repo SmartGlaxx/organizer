@@ -25,20 +25,28 @@ const reducer = (state, action)=>{
         return {...state, category: action.payload}
         break;
         case 'DISPLAY_ITEM_FORM':
-        return {...state, addNewItemm: action.payload.show, displayedForm: action.payload.itemName, selectedCategory: action.payload.idCategory}
+        return {...state, addNewItemm: action.payload.show, overlay: true, displayedForm: action.payload.itemName, selectedCategory: action.payload.idCategory}
         break;
         case 'CLOSE_FORM':
-        return {...state, addNewItemm: action.payload}
+        return {...state, addNewItemm: action.payload, overlay: false, isEditing: false}
         break;
         case 'SELECTED_CATEGORY':
-        return {...state, selectedCategory: action.payload, displayList: true}
+        return {...state, selectedCategory: action.payload, displayList: true, overlay: true}
         break;
         case 'CLOSE_LIST':
-        return {...state, displayList: false}
+        return {...state, displayList: false, overlay: false}
         break;
         case 'DELETE_ITEM':
-         return {...state, categories:  action.payload }
+        return {...state, categories:  action.payload }
         break;
+        case 'SET_EDIT_VALUE':
+        return {...state, itemName:  action.payload.itemEdit , addNewItemm: true, isEditing: true, displayList: false, 
+        editItemId: action.payload.id, displayedForm: action.payload.cateName}
+        break;
+        case 'SET_EDITED_ITEM':
+        return {...state, categories:  action.payload}
+        break;
+        
 
         default:
         return state
