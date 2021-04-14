@@ -4,11 +4,11 @@ const reducer = (state, action)=>{
     switch(action.type){
         
         case 'SET_COLOR':
-        return {...state, color: action.payload}
+        return {...state, color: action.payload, categoryExists: false}
         break;
 
         case 'SET_CATEGORIES':
-        return {...state, categories: [...state.categories, {id:uuidv1(), name: state.category, categoryColor: action.payload, list: []} ] }
+        return {...state, categories: [...state.categories, {id:uuidv1(), name: state.category, categoryColor: action.payload, list: []} ], categoryExists: false }
         break;
         case 'EMPTY_CATEGORY':
         return {...state, category: '' }
@@ -44,9 +44,15 @@ const reducer = (state, action)=>{
         editItemId: action.payload.id, displayedForm: action.payload.cateName}
         break;
         case 'SET_EDITED_ITEM':
-        return {...state, categories:  action.payload}
+        return {...state, categories:  action.payload, isEditing: false}
         break;
-        
+        case 'CATEGORY_EXISTS':
+        return {...state, categoryExists: true,  overlay: true}
+        break;
+        case 'SET_NOTICE_CLOSE':
+        return {...state, categoryExists: false,  overlay: false}
+        break;
+   
 
         default:
         return state

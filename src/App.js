@@ -54,14 +54,37 @@ justify-content: space-between;
 	border: 1px solid black
 }
 .overlay{
-	width: 100%;
-	height: 100%;
+	width: 100vw;
+	height: 100vh;
 	top: 0;
 	bottom: 0;
 	right: 0;
 	left:0;
 	position: absolute;
 	background: rgba(15,15,15, 0.9)
+}
+body{
+	margin:0;
+	padding: 0
+}
+.categoryExistoverlay{
+	width: 60vw;
+	height: 60vh;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left:0;
+	color: #444;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	background: rgba(15,15,15, 0.9);
+	background: #ddd;
+	margin: 20vh 20vw;
+	padding: 1rem;
+	box-sizing: border-box;
+	text-align: center;
 }
 .closeBtn{
 	position:absolute;
@@ -102,7 +125,7 @@ function App() {
 	const {addNewItemm, displayedForm, closeForm, selectedCategory,
 	displayList, closeList, deleteItem, addCategory, setCategory,
 	 categories, category, color, addToCategory, setItemName, 
-	 itemName, overlay
+	 itemName, overlay, categoryExists, closeNotice
 	} = ContextUser()
 	// const [itemName, setItemName] = useState('')
 	// const [color, setColor] = useState('#eee')
@@ -155,7 +178,10 @@ function App() {
 
   return (
     <Container >
-	{overlay && <div className='overlay'><h1>OVEWRLAY</h1></div>}
+	{overlay && <div className='overlay'></div>}
+	{categoryExists && <div className='categoryExistoverlay'><h2>This category already exists</h2>
+	<button className='closeBtn' style={{color: 'white'}} onClick={closeNotice}><FaWindowClose/></button>
+	</div>}
 	<div className = 'category-maker'>
 	Create Category
 	<Form />

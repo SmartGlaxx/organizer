@@ -16,14 +16,15 @@ const initialState ={
     isEditing: false,
     overlay: false,
     editItemId: 0,
+    categoryExists: false
 
 }
 const AppProvider = ({children})=>{
     const [state, dispatch] = React.useReducer(reducer, initialState)
 
 
-    const addCategory = (e)=>{
-		e.preventDefault()
+    const addCategory = ()=>{
+		// e.preventDefault()
 		const formValue= document.forms[0]
 		for(let i=0; i<formValue.length; i++){
 			if(formValue[i].checked){
@@ -32,14 +33,8 @@ const AppProvider = ({children})=>{
                 dispatch({type: 'SET_CATEGORIES', payload: formValue[i].value})
 			}
 		}
+         dispatch({type: 'EMPTY_CATEGORY' })
 		
-		// setCategories(prev =>{
-		// 	return [...prev,  {name: category, list: []}]
-		// })
-        
-        //  dispatch({type: 'SET_CATEGORIES'})
-         dispatch({type: 'EMPTY_CATEGORY', })
-		// setCategory('')
 	}
 
     const setItemName =(name)=>{
@@ -155,12 +150,18 @@ const AppProvider = ({children})=>{
             }
         })
     }
+    const setCategoryExists = ()=>{
+        dispatch({type: 'CATEGORY_EXISTS'})
+    }
 
+    const closeNotice =()=>{
+        dispatch({type: 'SET_NOTICE_CLOSE'})
+    }
 
     return <AppContext.Provider value={{
         ...state, setAddNewItem, closeForm, showList, closeList,
         deleteItem, setCategory, addCategory, addToCategory, setItemName, 
-        editItem, 
+        editItem, setCategoryExists, closeNotice
     }}>
         {children}
     </AppContext.Provider>

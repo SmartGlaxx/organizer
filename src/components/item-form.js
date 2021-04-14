@@ -4,7 +4,8 @@ import {FaWindowClose, FaRegTrashAlt} from 'react-icons/fa'
 
 
 const ItemForm = ()=>{
- const { addNewItemm, addToCategory, closeForm, displayedForm, itemName, setItemName, categories, selectedCategory} = ContextUser();
+ const { addNewItemm, addToCategory, closeForm, displayedForm, itemName, setItemName, categories, 
+ selectedCategory, isEditing} = ContextUser();
 
     	let eachColor2 = ''
 	categories.map(item => {
@@ -37,7 +38,7 @@ const ItemForm = ()=>{
             <input type = 'text' value={itemName}
             onChange={(e)=>{setItemName(e.target.value)}}
             />
-            <button>Add item</button>
+            <button style={{background: `${isEditing ? 'orange' : 'green' }`}}>{`${ isEditing ? "Update Item" : 'Add Item'}`}</button>
         </form>
         </div>
     )

@@ -3,9 +3,23 @@ import {ContextUser} from '../context'
 
 const Form = ()=>{
     const colorRef = useRef()
-    const {addCategory, category, setCategory, } = ContextUser();
+    const {addCategory, category, setCategory, categories, setCategoryExists} = ContextUser();
+
+	const checkAddCategory = (e)=>{
+		e.preventDefault()
+		if(categories.length == 0){
+			addCategory()
+		}else{
+			const nameFind = categories.find(categoryItem => categoryItem.name.toLowerCase() == category.toLowerCase())
+			if(nameFind){
+				setCategoryExists()
+			}else{
+				addCategory()
+			}			
+		}
+	}
     return (
-	<form onSubmit={addCategory}>
+	<form onSubmit={checkAddCategory}>
 		 <label htmlFor='category'>Title</label>
  			<input type='text' value={category} name='category'
  		onChange = {(e)=>{setCategory(e.target.value)}}
