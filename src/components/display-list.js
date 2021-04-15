@@ -37,9 +37,13 @@ const DisplayList =({eachCategory})=>{
 		{namer.map((item , index)=>{
 			return <>
 			<li className='listItems'>
+			<div style={{width: '80%', float: 'left', height:'60px' }}>
 			{item.name}
+			</div>
+			<span >
 			<button onClick={()=>{deleteItem(listName, item.id)}} className='deleteBtn'><FaRegTrashAlt /></button>
 			<button onClick={()=>{editItem(listName, item.name, item.id)}} className='editBtn'><FaEdit/></button>
+			</span>
 			</li>
 			</>
 			})}

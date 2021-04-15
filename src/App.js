@@ -13,11 +13,14 @@ background: #eee;
 min-height: 100vh;
 height: auto;
 display: block;
+padding: 0;
+box-sizing:border-box;
 
 .todo-btns{
 	display: flex;
 	align-items: center;
-	justify-content: center
+	justify-content: center;
+	
 }
 .todo-btn{
 	background: black;
@@ -34,6 +37,9 @@ display: block;
 }
 .warning{
 	border: 2px solid red
+}
+h3{
+	margin: 0.1rem 0 1rem
 }
 ` 
 
@@ -67,23 +73,24 @@ function App() {
 		<button>My Diary</button><br/>
 	</div>}
 	
-	<button className='plusItem' onClick={showOptions}
-	><FaPlusCircle className='plusItemIcon'/></button>
-	{createTodo && <div className = 'category-maker'>
+	<button className='plusItem' onClick={showOptions} ><FaPlusCircle className='plusItemIcon'/></button>
+	{createTodo && <><div className = 'category-maker'>
 		Create Category 
 		{!showCategoryFormValue && <FaAngleDown className='plusCategoryIcon' onClick={()=>{showCategoryForm(true)}}/>}
 		{showCategoryFormValue && <FaAngleUp className='plusCategoryIcon' onClick={()=>{showCategoryForm(false)}}/>}
 		{showCategoryFormValue && <Form />}
-	</div>}
-	{createNote && <div className='create-note'>
-		Note
-	</div>}
- 		<div className='categoryList'>
+	</div>
+	<div className='categoryList'>
 		 {categories.map((eachCategory, i) =>{
 			 return <Categories key ={i}
 			 eachCategory ={eachCategory} />
 		 })}
-	</div>
+	</div></>
+	}
+	{createNote && <div className='create-note'>
+		Note
+	</div>}
+ 		
     </Container>
   );
 }

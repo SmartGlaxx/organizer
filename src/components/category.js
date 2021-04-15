@@ -6,13 +6,13 @@ import DisplayList from './display-list'
 import ItemForm from './item-form'
 
 const Container = styled.div`
-	width: 20rem;
-	min-width: 8rem;
+	${'' /* width: 15rem; */}
+	${'' /* min-width: 5rem; */}
 	${'' /* height: 4rem; */}
 	box-shadow: 2px 3px 1px gray;
 	border: 1px solid gray;
 	display: flex;
-	margin: 5px;
+	margin: 1rem 0;
 	padding: 10px;
 	align-items: center;
 	justify-content: center;
@@ -40,6 +40,10 @@ const Container = styled.div`
 	h3{
 		margin: 0;
 	}
+
+	@media screen and(max-width: 800px){
+		.main-category{background: green}
+	}
 ` 
 
 	const Category = ({eachCategory})=>{
@@ -64,17 +68,15 @@ const Container = styled.div`
 		
 	}
 
-	return <><Container style={{background: eachCategory.categoryColor}}>
+	return <><Container style={{background: eachCategory.categoryColor}} className='main-category'>
 		<div >
 	
 		<div className='close-category' style={{color: eachCategory.categoryColor}} 
 		onClick={()=>{deleteCategory(eachCategory.id)}}><FaTimes /></div>
 		
 		<h2 className='listname'>{eachCategory.name.length > 20 ? eachCategory.name.slice(0,20)+'...' : eachCategory.name}</h2>
-		<div className='todo-btns'>
-	
-		</div>
-		<div style={{display: 'flex'}}>
+
+		<div className='todo-btns' >
 		<button className='todo-btn' onClick={()=>{showList(eachCategory.id)}} style={{color: eachCategory.categoryColor}}>VIEW LIST</button><br/>
 		<button className='todo-btn' onClick={()=>{addItem(eachCategory.name, eachCategory.id)} } style={{color: eachCategory.categoryColor}}
 		>ADD ITEM</button>
