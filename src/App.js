@@ -10,6 +10,7 @@ FaPlus, FaMinus, FaAngleDown, FaAngleUp} from 'react-icons/fa'
 
 const Container = styled.div` 
 background: #eee;
+min-height: 100vh;
 height: auto;
 display: block;
 
@@ -30,6 +31,9 @@ display: block;
 }
 .todo-btn:hover{
 	background: #222
+}
+.warning{
+	border: 2px solid red
 }
 ` 
 

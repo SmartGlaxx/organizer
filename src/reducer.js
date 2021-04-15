@@ -19,10 +19,13 @@ const reducer = (state, action)=>{
         case 'EMPTY_ITEM_NAME':
         return {...state, itemName: '' }
         break;
+        case 'DELETE_CATEGORY':
+        return {...state, categories: action.payload }
+        break;
 
 
         case 'SET_CATEGORY':
-        return {...state, category: action.payload}
+        return {...state, category: action.payload, formWarning: false}
         break;
         case 'DISPLAY_ITEM_FORM':
         return {...state, addNewItemm: action.payload.show, overlay: true, displayedForm: action.payload.itemName, selectedCategory: action.payload.idCategory}
@@ -65,13 +68,17 @@ const reducer = (state, action)=>{
         return {...state, showCategoryFormValue: action.payload}
         break;
         case 'CLOSE_ALL_TOP_DIVS':
-        return {...state, displayList : false, showSelectOptions: false, categoryExists: false, categoryIsNull: false, overlay: false}
+        return {...state, displayList : false, showSelectOptions: false, categoryExists: false, categoryIsNull: false, addNewItemm: false, overlay: false}
         break;
         case 'SET_CREATE_NOTE':
         return {...state, createTodo: false, createNote: true, createDiary: false, overlay: false, showSelectOptions: false}
         break;
-        
-
+        case 'SET_COLOR_WARNING':
+        return {...state, formWarning: true}
+        break;
+        case 'UNSET_COLOR_WARNING':
+        return {...state, formWarning: false }
+        break;
 
         default:
         return state

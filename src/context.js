@@ -23,7 +23,8 @@ const initialState ={
     createNote: false, 
     createDiary: false,
     showCategoryFormValue: false,
-    createNote: false
+    createNote: false,
+    formWarning: false
 
 }
 const AppProvider = ({children})=>{
@@ -183,12 +184,24 @@ const AppProvider = ({children})=>{
     const setCreateNote =()=>{
         dispatch({type: 'SET_CREATE_NOTE'})
     }
+    const deleteCategory =(categoryId)=>{
+       const categFiltered = state.categories.filter(item => item.id != categoryId)
+       dispatch({type: 'DELETE_CATEGORY', payload: categFiltered})
+    }
+    const checkInput =()=>{
+        if(state.category.length > 0){
+            dispatch({type: 'UNSET_COLOR_WARNING'})
+        }else{
+            dispatch({type: 'SET_COLOR_WARNING'})
+        }
+    }
+    
     return <AppContext.Provider value={{
         ...state, setAddNewItem, closeForm, showList, closeList, 
         deleteItem, setCategory, addCategory, addToCategory, setItemName, 
         editItem, setCategoryExists, closeNotice, nullCategoryWarning, 
         showOptions, setCreateTodo, showCategoryForm, closeAllDivs,
-        setCreateNote
+        setCreateNote, deleteCategory, checkInput
     }}>
         {children}
     </AppContext.Provider>

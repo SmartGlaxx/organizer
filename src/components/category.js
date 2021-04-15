@@ -25,6 +25,7 @@ const Container = styled.div`
 		right: 0.3rem;
 		top: 0.3rem;
 		display: flex;
+		float:right;
 		align-items: center;
 		justify-content: center;
 		padding: 0.15rem;
@@ -44,7 +45,8 @@ const Container = styled.div`
 	const Category = ({eachCategory})=>{
 	const [name, setName] = useState('')
 	// const [addNewItem, setAddNewItem] = useState(false);
-	const {categories, selectedCategory, deleteItem, setAddNewItem, setModalOpen, showList, displayList, closeList} = ContextUser();
+	const {categories, selectedCategory, deleteItem, setAddNewItem, setModalOpen,
+	 showList, displayList, closeList, deleteCategory} = ContextUser();
 
 	// let namer = [];
 	// 	displayList && <div>
@@ -62,22 +64,27 @@ const Container = styled.div`
 		
 	}
 
-	return <Container style={{background: eachCategory.categoryColor}}>
+	return <><Container style={{background: eachCategory.categoryColor}}>
 		<div >
-		<div className='close-category' style={{color: eachCategory.categoryColor}} onCLick={deleteCategory}><FaTimes /></div>
+	
+		<div className='close-category' style={{color: eachCategory.categoryColor}} 
+		onClick={()=>{deleteCategory(eachCategory.id)}}><FaTimes /></div>
+		
 		<h2 className='listname'>{eachCategory.name.length > 20 ? eachCategory.name.slice(0,20)+'...' : eachCategory.name}</h2>
 		<div className='todo-btns'>
+	
+		</div>
+		<div style={{display: 'flex'}}>
 		<button className='todo-btn' onClick={()=>{showList(eachCategory.id)}} style={{color: eachCategory.categoryColor}}>VIEW LIST</button><br/>
 		<button className='todo-btn' onClick={()=>{addItem(eachCategory.name, eachCategory.id)} } style={{color: eachCategory.categoryColor}}
 		>ADD ITEM</button>
 		</div>
 		</div>
 
+		</Container>
 		<ItemForm />
 		<DisplayList eachCategory ={eachCategory}/>
-		
-
-		</Container>
+		</>
 }
 
 export default Category

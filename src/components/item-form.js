@@ -33,7 +33,7 @@ const ItemForm = ()=>{
 	justifyContent: 'center', background: eachColor2}}>
         <form onSubmit={(e)=>addToCategory(e, listName)}>
         <h3>{listName}</h3>
-        <button onClick={closeForm}><FaWindowClose /></button>
+        <button onClick={closeForm} className='closeBtn'><FaWindowClose /></button>
             <h1>Add item to {displayedForm}</h1>
             <input type = 'text' value={itemName}
             onChange={(e)=>{setItemName(e.target.value)}}
