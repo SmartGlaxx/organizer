@@ -65,8 +65,13 @@ const reducer = (state, action)=>{
         return {...state, showCategoryFormValue: action.payload}
         break;
         case 'CLOSE_ALL_TOP_DIVS':
-        return {...state, showSelectOptions: false, categoryExists: false, categoryIsNull: false, createTodo:false, overlay: false}
+        return {...state, displayList : false, showSelectOptions: false, categoryExists: false, categoryIsNull: false, overlay: false}
         break;
+        case 'SET_CREATE_NOTE':
+        return {...state, createTodo: false, createNote: true, createDiary: false, overlay: false, showSelectOptions: false}
+        break;
+        
+
 
         default:
         return state

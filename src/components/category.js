@@ -1,28 +1,43 @@
 import React, {useState} from 'react'
 import {ContextUser} from '../context'
 import styled from 'styled-components'
-import {FaWindowClose, FaRegTrashAlt} from 'react-icons/fa'
+import {FaWindowClose, FaRegTrashAlt, FaPlus, FaMinus, FaTimes} from 'react-icons/fa'
 import DisplayList from './display-list'
 import ItemForm from './item-form'
 
 const Container = styled.div`
-	${'' /* width: 4rem;
-	height: 4rem; */}
+	width: 20rem;
+	min-width: 8rem;
+	${'' /* height: 4rem; */}
 	box-shadow: 2px 3px 1px gray;
 	border: 1px solid gray;
 	display: flex;
+	margin: 5px;
 	padding: 10px;
 	align-items: center;
 	justify-content: center;
-	
+	box-shadow: 5px 10px 10px gray;
+	position: relative;
+	.close-category{
+		background: black;
+		font-size: 1.3rem;
+		position: absolute;
+		right: 0.3rem;
+		top: 0.3rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.15rem;
+		border-radius: 5px
+	}
+	.listname{
+		text-align: center
+	}
 	button{
 		text-transform: uppercase;
-		background: #777;
-		color: #eee
 	}
 	h3{
 		margin: 0;
-		
 	}
 ` 
 
@@ -49,10 +64,13 @@ const Container = styled.div`
 
 	return <Container style={{background: eachCategory.categoryColor}}>
 		<div >
-		<h2>{eachCategory.name}</h2>
-		<button onClick={()=>{showList(eachCategory.id)}}>View items on list</button><br/>
-		<button onClick={()=>{addItem(eachCategory.name, eachCategory.id)} }
-		>Add Item</button>
+		<div className='close-category' style={{color: eachCategory.categoryColor}} onCLick={deleteCategory}><FaTimes /></div>
+		<h2 className='listname'>{eachCategory.name.length > 20 ? eachCategory.name.slice(0,20)+'...' : eachCategory.name}</h2>
+		<div className='todo-btns'>
+		<button className='todo-btn' onClick={()=>{showList(eachCategory.id)}} style={{color: eachCategory.categoryColor}}>VIEW LIST</button><br/>
+		<button className='todo-btn' onClick={()=>{addItem(eachCategory.name, eachCategory.id)} } style={{color: eachCategory.categoryColor}}
+		>ADD ITEM</button>
+		</div>
 		</div>
 
 		<ItemForm />

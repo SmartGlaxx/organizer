@@ -31,7 +31,7 @@ const DisplayList =({eachCategory})=>{
 	
 		return (
         displayList && <div className='displayList' style={{background: eachColor}}>
-		<h3>{listName}</h3>
+		<h3 className='listname'>{listName}</h3>
 		<button onClick={closeList} className='closeBtn'><FaWindowClose /></button>
 		<ul className='listContainer'>
 		{namer.map((item , index)=>{

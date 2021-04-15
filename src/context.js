@@ -22,7 +22,8 @@ const initialState ={
     createTodo: false, 
     createNote: false, 
     createDiary: false,
-    showCategoryFormValue: false
+    showCategoryFormValue: false,
+    createNote: false
 
 }
 const AppProvider = ({children})=>{
@@ -176,14 +177,18 @@ const AppProvider = ({children})=>{
     const showCategoryForm =(value)=>{
         dispatch({type: 'SHOW_CATEGORY_FORM', payload: value})
     }
-    const closeAllDivs = ()=>[
+    const closeAllDivs = ()=>{
         dispatch({type: 'CLOSE_ALL_TOP_DIVS'})
-    ]
+    }
+    const setCreateNote =()=>{
+        dispatch({type: 'SET_CREATE_NOTE'})
+    }
     return <AppContext.Provider value={{
-        ...state, setAddNewItem, closeForm, showList, closeList,
+        ...state, setAddNewItem, closeForm, showList, closeList, 
         deleteItem, setCategory, addCategory, addToCategory, setItemName, 
         editItem, setCategoryExists, closeNotice, nullCategoryWarning, 
-        showOptions, setCreateTodo, showCategoryForm, closeAllDivs
+        showOptions, setCreateTodo, showCategoryForm, closeAllDivs,
+        setCreateNote
     }}>
         {children}
     </AppContext.Provider>
