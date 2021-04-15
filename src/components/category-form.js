@@ -3,10 +3,12 @@ import {ContextUser} from '../context'
 
 const Form = ()=>{
     const colorRef = useRef()
-    const {addCategory, category, setCategory, categories, setCategoryExists} = ContextUser();
+    const {addCategory, category, setCategory, categories, setCategoryExists, nullCategoryWarning} = ContextUser();
 
 	const checkAddCategory = (e)=>{
 		e.preventDefault()
+
+		if(category.length > 0){
 		if(categories.length == 0){
 			addCategory()
 		}else{
@@ -17,18 +19,23 @@ const Form = ()=>{
 				addCategory()
 			}			
 		}
+
+	}else{
+		nullCategoryWarning()
+	}
+
 	}
     return (
 	<form onSubmit={checkAddCategory}>
 		 <label htmlFor='category'>Title</label>
- 			<input type='text' value={category} name='category'
+ 			<input type='text' value={category} name='category' className='categoryInput'
  		onChange = {(e)=>{setCategory(e.target.value)}}
  			 /><br/>
 			  <h4>Select Note Color</h4>
 			<div style={{background: '#fc5c65'}} className='colorBox'></div><label htmlFor='#fc5c65'>Fusion Red</label>
-			<input type='radio' name='color' value='#fc5c65' className='color' ref={colorRef}/><br/>
+			<input type='radio' name='color' value='#fc5c65' className='color' ref={colorRef} checked='checked'/><br/>
 			<div style={{background: '#45aaf2'}} className='colorBox'></div><label htmlFor='#45aaf2'>High Blue</label>
-			<input type='radio' name='color' value='#45aaf2' className='color' ref={colorRef}/><br/>
+			<input type='radio' name='color' value='#45aaf2' className='color' ref={colorRef} /><br/>
 			<div style={{background: '#ff4757'}} className='colorBox'></div><label htmlFor='#ff4757'>Android Green</label>
 			<input type='radio' name='color' value='#ff4757' className='color' /><br/>
 			<div style={{background: '#D980FA'}} className='colorBox'></div><label htmlFor='#D980FA'>Lavender Tea</label>

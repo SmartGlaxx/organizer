@@ -8,7 +8,7 @@ const reducer = (state, action)=>{
         break;
 
         case 'SET_CATEGORIES':
-        return {...state, categories: [...state.categories, {id:uuidv1(), name: state.category, categoryColor: action.payload, list: []} ], categoryExists: false }
+        return {...state, categories: [...state.categories, {id:uuidv1(), name: state.category, categoryColor: action.payload , list: []} ], categoryExists: false }
         break;
         case 'EMPTY_CATEGORY':
         return {...state, category: '' }
@@ -49,10 +49,24 @@ const reducer = (state, action)=>{
         case 'CATEGORY_EXISTS':
         return {...state, categoryExists: true,  overlay: true}
         break;
+        case 'CATEGORY_IS_NULL':
+        return {...state, categoryIsNull: true,  overlay: true}
+        break;  
         case 'SET_NOTICE_CLOSE':
-        return {...state, categoryExists: false,  overlay: false}
+        return {...state, categoryExists: false, categoryIsNull: false,  overlay: false}
         break;
-   
+        case 'SHOW_OPTIONS':
+        return {...state, showSelectOptions:true, overlay: true}
+        break;  
+        case 'SET_CREATE_TODO':
+        return {...state, createTodo: true, createNote: false, createDiary: false, overlay: false, showSelectOptions: false}
+        break;  
+        case 'SHOW_CATEGORY_FORM':
+        return {...state, showCategoryFormValue: action.payload}
+        break;
+        case 'CLOSE_ALL_TOP_DIVS':
+        return {...state, showSelectOptions: false, categoryExists: false, categoryIsNull: false, createTodo:false, overlay: false}
+        break;
 
         default:
         return state

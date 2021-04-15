@@ -16,7 +16,13 @@ const initialState ={
     isEditing: false,
     overlay: false,
     editItemId: 0,
-    categoryExists: false
+    categoryExists: false,
+    categoryIsNull: false,
+    showSelectOptions:false,
+    createTodo: false, 
+    createNote: false, 
+    createDiary: false,
+    showCategoryFormValue: false
 
 }
 const AppProvider = ({children})=>{
@@ -158,10 +164,26 @@ const AppProvider = ({children})=>{
         dispatch({type: 'SET_NOTICE_CLOSE'})
     }
 
+    const nullCategoryWarning = ()=>{
+        dispatch({type: 'CATEGORY_IS_NULL'})
+    }
+    const showOptions = ()=>{
+        dispatch({type: 'SHOW_OPTIONS'})
+    }
+    const setCreateTodo =()=>{
+        dispatch({type: 'SET_CREATE_TODO'})
+    }
+    const showCategoryForm =(value)=>{
+        dispatch({type: 'SHOW_CATEGORY_FORM', payload: value})
+    }
+    const closeAllDivs = ()=>[
+        dispatch({type: 'CLOSE_ALL_TOP_DIVS'})
+    ]
     return <AppContext.Provider value={{
         ...state, setAddNewItem, closeForm, showList, closeList,
         deleteItem, setCategory, addCategory, addToCategory, setItemName, 
-        editItem, setCategoryExists, closeNotice
+        editItem, setCategoryExists, closeNotice, nullCategoryWarning, 
+        showOptions, setCreateTodo, showCategoryForm, closeAllDivs
     }}>
         {children}
     </AppContext.Provider>
