@@ -30,7 +30,7 @@ const Form = ()=>{
     return (
 	<form onSubmit={checkAddCategory}>
 		 {/* <label htmlFor='category'>Title: </label> */}
- 			<input type='text' value={category} name='category' placeholder='eg. Shopping list'
+ 			<input type='text' value={category} name='category' placeholder='eg. Shopping list' 
  		onChange = {(e)=>{setCategory(e.target.value)}} className={`${formWarning ? 'categoryInput warning' : 'categoryInput'}`}
  			 /><br/>
 			<h4>Select Category Color</h4>

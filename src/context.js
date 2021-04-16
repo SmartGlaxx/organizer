@@ -20,6 +20,7 @@ const initialState ={
     editItemId: 0,
     categoryExists: false,
     categoryIsNull: false,
+    itemIsNull: false,
     showSelectOptions:false,
     createDiary: false,
     showCategoryFormValue: false,
@@ -55,6 +56,9 @@ const AppProvider = ({children})=>{
     const addToCategory = (e, listName)=>{
 		 e.preventDefault()
 
+         if(state.itemName.length == ''){
+           dispatch({type: 'ITEM_IS_NULL'})
+        }else{
 		if(state.isEditing){
            
             //all categorie
@@ -110,6 +114,9 @@ const AppProvider = ({children})=>{
 		
 		// setItemName('')
          dispatch({type: 'EMPTY_ITEM_NAME'})
+
+
+    }
 		
 	}
 

@@ -56,9 +56,12 @@ const reducer = (state, action)=>{
         break;
         case 'CATEGORY_IS_NULL':
         return {...state, categoryIsNull: true,  overlay: true}
+        break;
+        case 'ITEM_IS_NULL':
+        return {...state, itemIsNull: true,  overlay: true, addNewItemm: false}
         break;  
         case 'SET_NOTICE_CLOSE':
-        return {...state, categoryExists: false, categoryIsNull: false,  overlay: false}
+        return {...state, categoryExists: false, categoryIsNull: false, itemIsNull:false, overlay: false}
         break;
         // case 'SHOW_OPTIONS':
         // return {...state, showSelectOptions:true, overlay: true}

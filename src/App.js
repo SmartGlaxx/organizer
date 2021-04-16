@@ -51,7 +51,7 @@ function App() {
 	displayList, closeList, deleteItem, addCategory, setCategory,
 	 categories, category, color, addToCategory, setItemName, 
 	 itemName, overlay, categoryExists, closeNotice, categoryIsNull,
-	  showCategoryForm, showCategoryFormValue, closeAllDivs, 
+	  showCategoryForm, showCategoryFormValue, closeAllDivs, itemIsNull
 	} = ContextUser()
 
 	const [list, setList] = useState([]);
@@ -63,12 +63,16 @@ function App() {
     <Container >
 	<Header />
 	{overlay && <div className='overlay' onClick={closeAllDivs}></div>}
-	{categoryExists && <div className='categoryWarningoverlay'><h2>This category already exists</h2>
+	{categoryExists && <div className='categoryWarningoverlay'><h3>This category already exists</h3>
 	<button className='closeBtn' style={{color: 'white'}} onClick={closeNotice}><FaWindowClose/></button>
 	</div>}
-	{categoryIsNull &&  <div className='categoryWarningoverlay'><h2>Please enter value for Category</h2>
+	{categoryIsNull &&  <div className='categoryWarningoverlay'><h3>Please enter the name of your category</h3>
 	<button className='closeBtn' style={{color: 'white'}} onClick={closeNotice}><FaWindowClose/></button>
 	</div>}
+	{itemIsNull &&  <div className='categoryWarningoverlay'><h3>Please enter the name of your to-do item</h3>
+	<button className='closeBtn' style={{color: 'white'}} onClick={closeNotice}><FaWindowClose/></button>
+	</div>}
+	
 	{/* {showSelectOptions && <div className='show-options'>
 		<button onClick={setCreateTodo}>Todo List</button><br/>
 		<button  onClick={setCreateNote}>My Notes</button><br/>
