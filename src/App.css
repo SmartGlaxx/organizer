@@ -55,15 +55,28 @@ body{
 	padding: 1.3rem;
 	justify-content: center;
 	width: 40%;
-	border: 1px solid black
+	border: 1px solid black;
 }
+.category-maker-top{
+	display: flex;
+	position: relative
+}
+/* .category-maker-top h3{
+	float: left
+} */
+.category-maker-top div{
+	position: absolute;
+	right: 0.5rem
+}
+
 .addBtn{
-	width: 15rem;
+	width: 50%;
 	min-width: 10rem;
 	padding: 0.7rem 2.3rem;
 	margin: 1rem 0;
 	box-sizing:border-box;
 	border: 1px solid black;
+	color: #ddd;
 	background: linear-gradient(to bottom, #000, #777, #000)
 }
 .addBtn:hover {
@@ -73,7 +86,8 @@ body{
 	transition: all 0.8s
 }
 .categoryInput{
-	max-width: 90% 
+	width: 50%;
+	padding: 0.2rem;
 }
 .addToCategory{
 	width: 50%;
@@ -207,7 +221,7 @@ body{
 	font-weight: bold
 }
 .main-category{
-	width: 20rem
+	/* width: 20rem */
 }
 
 @media screen and (max-width: 800px){
@@ -218,10 +232,9 @@ body{
 	.categoryList{
 		display: block;
 		justify-content: center;
+
 	}
-	.main-category{
-		width: 96%;
-	}
+
 	.displayList, .addToCategory{
 		width: 90%;
 		top: 5rem;
@@ -243,3 +256,8 @@ body{
 	}
 }
 
+@media screen and (max-width: 520px){
+	.categoryInput, .addBtn{
+		width: 100%;
+	}
+}

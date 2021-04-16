@@ -41,9 +41,7 @@ const Container = styled.div`
 		margin: 0;
 	}
 
-	@media screen and(max-width: 800px){
-		.main-category{background: green}
-	}
+	
 ` 
 
 	const Category = ({eachCategory})=>{

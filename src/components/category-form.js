@@ -29,8 +29,8 @@ const Form = ()=>{
 	
     return (
 	<form onSubmit={checkAddCategory}>
-		 <label htmlFor='category'>Title: </label>
- 			<input type='text' value={category} name='category' 
+		 {/* <label htmlFor='category'>Title: </label> */}
+ 			<input type='text' value={category} name='category' placeholder='eg. Shopping list'
  		onChange = {(e)=>{setCategory(e.target.value)}} className={`${formWarning ? 'categoryInput warning' : 'categoryInput'}`}
  			 /><br/>
 			<h4>Select Category Color</h4>
@@ -51,12 +51,6 @@ const Form = ()=>{
 			<input type='radio' name='color' value='#a4b0be' className='color' /><br/>
 			<div style={{background: '#FFC312'}} className='colorBox'></div><label htmlFor='#FFC312'>Sunflower</label>
 			<input type='radio' name='color' value='#FFC312' className='color' /><br/>
-			{/* <div style={{background: '#FDA7DF'}} className='colorBox'></div><label htmlFor='#FDA7DF'>Lavender Rose</label>
-			<input type='radio' name='color' value='#FDA7DF' className='color' /><br/> */}
-			{/* <div style={{background: '#ffa502'}} className='colorBox'></div><label htmlFor='#ffa502'>Orange</label>
-			<input type='radio' name='color' value='#ffa502' className='color' /><br/> */}
-			{/* <div style={{background: '#4a69bd'}} className='colorBox'></div><label htmlFor='#4a69bd'>Azraq Blue</label>
-			<input type='radio' name='color' value='#4a69bd' className='color' /><br/> */}
  			 <button type='submit' className='addBtn'>CREATE CATEGORY</button>
  		</form>
     )

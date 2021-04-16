@@ -41,6 +41,7 @@ box-sizing:border-box;
 h3{
 	margin: 0.1rem 0 1rem
 }
+
 ` 
 
 function App() {
@@ -75,9 +76,13 @@ function App() {
 	
 	<button className='plusItem' onClick={showOptions} ><FaPlusCircle className='plusItemIcon'/></button>
 	{createTodo && <><div className = 'category-maker'>
-		Create Category 
+		<div className='category-maker-top'>
+		<h3>Create Category </h3>
+		<div>
 		{!showCategoryFormValue && <FaAngleDown className='plusCategoryIcon' onClick={()=>{showCategoryForm(true)}}/>}
 		{showCategoryFormValue && <FaAngleUp className='plusCategoryIcon' onClick={()=>{showCategoryForm(false)}}/>}
+		</div>
+		</div>
 		{showCategoryFormValue && <Form />}
 	</div>
 	<div className='categoryList'>
