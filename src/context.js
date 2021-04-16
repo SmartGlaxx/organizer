@@ -21,11 +21,8 @@ const initialState ={
     categoryExists: false,
     categoryIsNull: false,
     showSelectOptions:false,
-    createTodo: false, 
-    createNote: false, 
     createDiary: false,
     showCategoryFormValue: false,
-    createNote: false,
     formWarning: false,
     itemAdded: false
 }
@@ -181,20 +178,14 @@ const AppProvider = ({children})=>{
     const nullCategoryWarning = ()=>{
         dispatch({type: 'CATEGORY_IS_NULL'})
     }
-    const showOptions = ()=>{
-        dispatch({type: 'SHOW_OPTIONS'})
-    }
-    const setCreateTodo =()=>{
-        dispatch({type: 'SET_CREATE_TODO'})
-    }
+    // const showOptions = ()=>{
+    //     dispatch({type: 'SHOW_OPTIONS'})
+    // }
     const showCategoryForm =(value)=>{
         dispatch({type: 'SHOW_CATEGORY_FORM', payload: value})
     }
     const closeAllDivs = ()=>{
         dispatch({type: 'CLOSE_ALL_TOP_DIVS'})
-    }
-    const setCreateNote =()=>{
-        dispatch({type: 'SET_CREATE_NOTE'})
     }
     const deleteCategory =(categoryId)=>{
        const categFiltered = state.categories.filter(item => item.id != categoryId)
@@ -212,8 +203,7 @@ const AppProvider = ({children})=>{
         ...state, setAddNewItem, closeForm, showList, closeList, 
         deleteItem, setCategory, addCategory, addToCategory, setItemName, 
         editItem, setCategoryExists, closeNotice, nullCategoryWarning, 
-        showOptions, setCreateTodo, showCategoryForm, closeAllDivs,
-        setCreateNote, deleteCategory, checkInput
+         showCategoryForm, closeAllDivs, deleteCategory, checkInput
     }}>
         {children}
     </AppContext.Provider>

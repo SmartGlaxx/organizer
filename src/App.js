@@ -5,6 +5,8 @@ import Categories from './components/category'
 import {ContextUser} from './context'
 import './App.css'
 import Form from './components/category-form'
+import Footer from './components/footer'
+import Header from './components/header'
 import {FaWindowClose, FaRegTrashAlt, FaPlusCircle, 
 FaPlus, FaMinus, FaAngleDown, FaAngleUp} from 'react-icons/fa'
 
@@ -49,8 +51,7 @@ function App() {
 	displayList, closeList, deleteItem, addCategory, setCategory,
 	 categories, category, color, addToCategory, setItemName, 
 	 itemName, overlay, categoryExists, closeNotice, categoryIsNull,
-	createTodo, showOptions, setCreateTodo, showSelectOptions, showCategoryForm,
-	 showCategoryFormValue, closeAllDivs, createNote, setCreateNote
+	  showCategoryForm, showCategoryFormValue, closeAllDivs, 
 	} = ContextUser()
 
 	const [list, setList] = useState([]);
@@ -60,7 +61,7 @@ function App() {
 
   return (
     <Container >
-	<div className='headerNav'>Smart's Organizer <br/><div>{(createTodo && '- My Todo List' )|| (createNote && '- My Notes')}</div></div>
+	<Header />
 	{overlay && <div className='overlay' onClick={closeAllDivs}></div>}
 	{categoryExists && <div className='categoryWarningoverlay'><h2>This category already exists</h2>
 	<button className='closeBtn' style={{color: 'white'}} onClick={closeNotice}><FaWindowClose/></button>
@@ -68,14 +69,14 @@ function App() {
 	{categoryIsNull &&  <div className='categoryWarningoverlay'><h2>Please enter value for Category</h2>
 	<button className='closeBtn' style={{color: 'white'}} onClick={closeNotice}><FaWindowClose/></button>
 	</div>}
-	{showSelectOptions && <div className='show-options'>
+	{/* {showSelectOptions && <div className='show-options'>
 		<button onClick={setCreateTodo}>Todo List</button><br/>
 		<button  onClick={setCreateNote}>My Notes</button><br/>
 		<button>My Diary</button><br/>
-	</div>}
+	</div>} */}
 	
-	<button className='plusItem' onClick={showOptions} ><FaPlusCircle className='plusItemIcon'/></button>
-	{createTodo && <><div className = 'category-maker'>
+	{/* <button className='plusItem'  ><FaPlusCircle className='plusItemIcon'/></button> */}
+	 <><div className = 'category-maker'>
 		<div className='category-maker-top'>
 		<h3>Create Category </h3>
 		<div>
@@ -91,11 +92,7 @@ function App() {
 			 eachCategory ={eachCategory} />
 		 })}
 	</div></>
-	}
-	{createNote && <div className='create-note'>
-		Note
-	</div>}
- 		
+ 	<Footer />
     </Container>
   );
 }

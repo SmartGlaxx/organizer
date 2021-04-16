@@ -60,21 +60,21 @@ const reducer = (state, action)=>{
         case 'SET_NOTICE_CLOSE':
         return {...state, categoryExists: false, categoryIsNull: false,  overlay: false}
         break;
-        case 'SHOW_OPTIONS':
-        return {...state, showSelectOptions:true, overlay: true}
-        break;  
-        case 'SET_CREATE_TODO':
-        return {...state, createTodo: true, createNote: false, createDiary: false, overlay: false, showSelectOptions: false}
-        break;  
+        // case 'SHOW_OPTIONS':
+        // return {...state, showSelectOptions:true, overlay: true}
+        // break;  
+        // case 'SET_CREATE_TODO':
+        // return {...state, createTodo: true, createNote: false, createDiary: false, overlay: false, showSelectOptions: false}
+        // break;  
         case 'SHOW_CATEGORY_FORM':
         return {...state, showCategoryFormValue: action.payload}
         break;
         case 'CLOSE_ALL_TOP_DIVS':
         return {...state, displayList : false, showSelectOptions: false, categoryExists: false, categoryIsNull: false, addNewItemm: false, overlay: false}
         break;
-        case 'SET_CREATE_NOTE':
-        return {...state, createTodo: false, createNote: true, createDiary: false, overlay: false, showSelectOptions: false}
-        break;
+        // case 'SET_CREATE_NOTE':
+        // return {...state, createTodo: false, createNote: true, createDiary: false, overlay: false, showSelectOptions: false}
+        // break;
         case 'SET_COLOR_WARNING':
         return {...state, formWarning: true}
         break;
