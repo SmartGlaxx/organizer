@@ -9,14 +9,14 @@ const Container = styled.div`
 	${'' /* width: 15rem; */}
 	${'' /* min-width: 5rem; */}
 	${'' /* height: 4rem; */}
-	box-shadow: 2px 3px 1px gray;
+	${'' /* box-shadow: 2px 3px 1px gray; */}
 	border: 1px solid gray;
 	display: flex;
 	margin: 1rem 0;
 	padding: 10px;
 	align-items: center;
 	justify-content: center;
-	box-shadow: 5px 10px 10px gray;
+	box-shadow: 1px 8px 10px gray;
 	position: relative;
 	.close-category{
 		background: black;
