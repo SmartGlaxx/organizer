@@ -37,7 +37,7 @@ const DisplayList =({eachCategory})=>{
 		{namer.map((item , index)=>{
 			return <>
 			<li className='listItems'>
-			<div style={{width: '80%', float: 'left', height:'60px' }}>
+			<div>
 			{item.name}
 			</div>
 			<span >

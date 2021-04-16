@@ -22,7 +22,9 @@ const reducer = (state, action)=>{
         case 'DELETE_CATEGORY':
         return {...state, categories: action.payload }
         break;
-
+        case 'ITEM_ADDED_TO_CATEGORY':
+        return {...state, itemAdded:  action.payload }
+        break;
 
         case 'SET_CATEGORY':
         return {...state, category: action.payload, formWarning: false}

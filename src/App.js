@@ -59,7 +59,7 @@ function App() {
 
   return (
     <Container >
-	<div className='headerNav'>Smart's Organizer {(createTodo && '- My Todo List' )|| (createNote && '- My Notes')}</div>
+	<div className='headerNav'>Smart's Organizer <br/><div>{(createTodo && '- My Todo List' )|| (createNote && '- My Notes')}</div></div>
 	{overlay && <div className='overlay' onClick={closeAllDivs}></div>}
 	{categoryExists && <div className='categoryWarningoverlay'><h2>This category already exists</h2>
 	<button className='closeBtn' style={{color: 'white'}} onClick={closeNotice}><FaWindowClose/></button>

@@ -16,7 +16,7 @@ body{
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	font-size: 1.4rem;
+	font-size: 0.8rem;
 	font-weight: bold;
 
 }
@@ -57,6 +57,21 @@ body{
 	width: 40%;
 	border: 1px solid black
 }
+.addBtn{
+	width: 15rem;
+	min-width: 10rem;
+	padding: 0.7rem 2.3rem;
+	margin: 1rem 0;
+	box-sizing:border-box;
+	border: 1px solid black;
+	background: linear-gradient(to bottom, #000, #777, #000)
+}
+.addBtn:hover {
+	background: #000;
+	color: #eee;
+
+	transition: all 0.8s
+}
 .categoryInput{
 	max-width: 90% 
 }
@@ -64,7 +79,7 @@ body{
 	width: 50%;
 	height: 70%;
 	z-index:1001;
-	position: absolute;
+	position: fixed;
 	top: 4rem;
 	left: 25%;
 	display: flex;
@@ -75,14 +90,17 @@ body{
 .displayList{
 	width: 50%;
 	min-height: 70%;
+	max-height: 70%;
 	height: auto;
 	z-index:1001;
-	position: absolute;
+	position: fixed;
 	top: 4rem;
+	bottom: auto;
 	left: 25%;
 	justify-content: center;
 	padding: 2rem;
-	box-sizing: border-box
+	box-sizing: border-box;
+	overflow: scroll;
 }
 .colorBox {
 	width: 1rem;
@@ -104,14 +122,14 @@ body{
 	bottom: 0;
 	right: 0;
 	left:0;
-	position: absolute;
-	background: rgba(15,15,15, 0.9);
-	z-index: 10
+	position: fixed;
+	background: rgba(15,15,15, 0.8);
+	z-index: 10;
 }
 
 .categoryWarningoverlay{
-	width: 60vw;
-	height: 60vh;
+	width: 60%;
+	height: 60%;
 	top: 0;
 	bottom: 0;
 	right: 0;
@@ -121,10 +139,10 @@ body{
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	position: absolute;
+	position: fixed;
 	background: rgba(15,15,15, 0.9);
 	background: #ddd;
-	margin: 20vh 20vw;
+	margin: 10% 20%;
 	padding: 1rem;
 	box-sizing: border-box;
 	text-align: center;
@@ -146,21 +164,24 @@ body{
 	padding: 2rem 1rem
 }
 .listItems{
-	margin: 0.8rem;
+	/* margin: 0.8rem; */
 	list-style-type: none;
 	width: 100%;
 	
 }
 .listItems span{
-	margin: 1rem 0;
-	width: 20%;
-	float: right
+	/* margin: 1rem 0; */
+	width: 25%;
+	float: right;
+
 }
 .listItems div{
 	word-wrap: break-word;
 	word-break: break-all;
-	background: red;
-	margin: auto;
+	width: 70%; 
+	float: left; 
+	min-height: 2rem; 
+	height: auto;
 	padding: 0.2rem 0;
 }
 .listname{
@@ -172,14 +193,18 @@ body{
 .deleteBtn{
 	float:right;
 	background: red;
-	padding: 0.2rem;
-	margin: 0 1px
+	padding: 0.4rem;
+	margin: 0 3px;
+	color: white;
+	font-weight: bold
 }
 .editBtn{
 	float: right;
 	background: green;
-	padding: 0.2rem;
-	margin: 0 1px
+	padding: 0.4rem;
+	margin: 0 1px;
+	color: white;
+	font-weight: bold
 }
 .main-category{
 	width: 20rem
@@ -210,3 +235,11 @@ body{
 		padding: 0.7 rem 0
 	}
 }
+
+@media screen and (max-width: 800px){
+	.categoryWarningoverlay{
+		width: 90%;
+		margin: 20% 5%
+	}
+}
+

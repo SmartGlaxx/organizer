@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import reducer from './reducer';
 import { v4 as uuidv1 } from 'uuid';
 
 const AppContext = React.createContext();
+const data = window.localStorage.getItem('categories');
+const jsonData = JSON.parse(data)
 
 const initialState ={
     addNewItemm: false,
@@ -11,7 +13,7 @@ const initialState ={
     displayList: false,
     color: '#eee',
     category: '',
-    categories: [],
+    categories: jsonData || [],
     itemName: '',
     isEditing: false,
     overlay: false,
@@ -24,21 +26,25 @@ const initialState ={
     createDiary: false,
     showCategoryFormValue: false,
     createNote: false,
-    formWarning: false
-
+    formWarning: false,
+    itemAdded: false
 }
 const AppProvider = ({children})=>{
     const [state, dispatch] = React.useReducer(reducer, initialState)
 
+    useEffect(() => {
+        window.localStorage.setItem('categories', JSON.stringify(state.categories))
+    }, [state.itemAdded, state.categories])
 
     const addCategory = ()=>{
-		// e.preventDefault()
+		
 		const formValue= document.forms[0]
 		for(let i=0; i<formValue.length; i++){
 			if(formValue[i].checked){
 				// setColor(formValue[i].value)
                 dispatch({type: 'SET_COLOR', payload: formValue[i].value})
                 dispatch({type: 'SET_CATEGORIES', payload: formValue[i].value})
+                //dispatch({type: 'SET_LOCAL_HOST', payload:})
 			}
 		}
          dispatch({type: 'EMPTY_CATEGORY' })
@@ -91,10 +97,16 @@ const AppProvider = ({children})=>{
         else{
             const categName = state.categories.map(categ =>
 		{
-			if(categ.name == state.displayedForm){                
+            
+			if(categ.name == state.displayedForm){  
+                console.log(state.itemAdded)              
 				const catr = state.itemName
 				const newlist = categ.list.push({id: uuidv1(), name:catr})
-			
+                dispatch({type: 'ITEM_ADDED_TO_CATEGORY', payload: true})
+                setTimeout(()=>{
+                    dispatch({type: 'ITEM_ADDED_TO_CATEGORY', payload: false})
+                }, 5000)
+                
 			} 
         })
         }
