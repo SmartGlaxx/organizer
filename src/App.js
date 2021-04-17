@@ -11,6 +11,7 @@ import {FaWindowClose, FaRegTrashAlt, FaPlusCircle,
 FaPlus, FaMinus, FaAngleDown, FaAngleUp} from 'react-icons/fa'
 
 const Container = styled.div` 
+position: relative;
 background: #eee;
 min-height: 100vh;
 height: auto;
@@ -54,8 +55,8 @@ function App() {
 	  showCategoryForm, showCategoryFormValue, closeAllDivs, itemIsNull
 	} = ContextUser()
 
-	const [list, setList] = useState([]);
-	const [item, setItem] = useState({});
+	// const [list, setList] = useState([]);
+	// const [item, setItem] = useState({});
 
  
 
